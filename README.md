@@ -16,7 +16,8 @@ The application stucture is the following:
 
 ### Install dependencies
 
-In order to install the dependencies, make sure to be in the cinema repository. And, run 
+In order to install the dependencies, make sure to be in the cinema repository. And, run
+
 ```
 npm install
 ```
@@ -29,7 +30,7 @@ Yo get the application started, run:
 npm start
 ```
 
-***Important***
+**_Important_**
 Go to [http://127.0.0.1:8080/pages/](http://127.0.0.1:8080/pages/) in order to see the landing page
 
 ### Run tests
@@ -37,6 +38,7 @@ Go to [http://127.0.0.1:8080/pages/](http://127.0.0.1:8080/pages/) in order to s
 ```
 npm test
 ```
+
 Keep in mind that there are various types of tests. In unit tests it's essential to avoid making external API calls, as they are designed to evaluate individual units of code in isolation.
 
 ### Create Rapid API Key
@@ -44,18 +46,34 @@ Keep in mind that there are various types of tests. In unit tests it's essential
 You will need your own API Key to complete this exercise, the project uses Rapid API for retrieving movie data.
 Please follow the steps below to create it:
 
-
 1. Create a new account on [RapidAPI](https://rapidapi.com/hub)
 2. Fill in your information and choose the free plan.
 3. Go to the [Dashboard or Apps tab](https://rapidapi.com/developer/dashboard).
 4. RapidAPI provides a default application, if you do not want to create a new one you can proceed to step 6.
 5. Click 'Add New App', provide a name and description for your app and then click 'Add app'.
 6. Find your API key in the 'Authorization' section of your app.
-7. Copy the value in the `X-RapidAPI-Key` header under OPTIONS in `javascript/constants.js`.
+7. Copy the value in the `javascript/env.js` file. If the file does not exist, create it. The content should look like this:
+
+```javascript
+export const env = {
+  X_RAPIDAPI_KEY: 'YOUR_API_KEY',
+};
+```
+
 8. Now, go to [MoviesDatabase](https://rapidapi.com/SAdrian/api/moviesdatabase/) and press the button `Subscribe to Test`.
 9. Select the 'Basic' plan.
 
 With this, you should be able to test the API!
+
+## Commit your changes
+
+In order to follow the [commit convention](https://www.conventionalcommits.org/), you can use the following command:
+
+```
+npm run commit
+```
+
+This will guide you through the commit message creation.
 
 ## Requirements
 
@@ -85,7 +103,7 @@ In the `javascript/constants.js` file, you'll find a constant named API_MOVIE_ID
 
 We need to show the film 'One Hundred and One Dalmatians' in a new page. This page should look like this:
 
-![Movie Page Mockup](./movie-page-mockup.png?raw=true "Mockup")
+![Movie Page Mockup](./movie-page-mockup.png?raw=true 'Mockup')
 
 So, create a new file in the `pages/` folder called `one-hundred-and-one-damatians.html`. Here, add the following piece of code:
 
@@ -184,5 +202,6 @@ So, create a new file in the `pages/` folder called `one-hundred-and-one-damatia
 ```
 
 Use the service created in the `5` to fetch the movie information. The id of this movie is 'tt0055254'. In order to apply the styles, you can use the `css/global.css` file.
+
 > Hint:
 > You can use flex box or grid in order to acomplish this view

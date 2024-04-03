@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "👀 Running pre-commit hook"
+echo '🔍 Running tests...'
+npm test
+npx lint-staged --config .lintstagedrc.cjs
+echo '✅ PRE-COMMIT: No error found, committing this now.... 🚀'
