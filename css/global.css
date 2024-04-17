@@ -71,6 +71,7 @@ button.log-in {
 /* nav bar shop options */
 nav.shop-options {
   background-color: white;
+  grid-template-columns: 1fr;
 }
 
 .logo {
@@ -215,5 +216,9 @@ footer div.apps > img {
   /* footer */
   footer {
     grid-template-columns: 15% 15% 15% auto 30%;
+  }
+
+  nav.shop-options {
+    grid-template-columns: 25% 50% 25%;
   }
 }
