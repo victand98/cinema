@@ -428,3 +428,7 @@ export const moviesResponseMock = {
   entries: 10,
   results: moviesMock,
 };
+
+export const getMovieResponseMock = (movieId) => ({
+  results: moviesMock.find((movie) => movie.id === movieId),
+});
