@@ -199,6 +199,60 @@ footer div.apps > img {
   margin: 3% 10px;
 }
 
+/* Movie Information */
+h1.movie-title {
+  text-align: center;
+  padding-left: 0;
+}
+
+section.movie-info {
+  max-width: 980px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 40px 30px;
+  margin: 20px 9%;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+section.movie-info img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+div.movie-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+  color: #3d3d3d;
+  font-family: Arial;
+}
+
+div.movie-details hr {
+  width: 100%;
+  border: 1px solid #0000003b;
+  border-style: dashed;
+}
+
+div.movie-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+div.movie-detail-item h4 {
+  text-transform: uppercase;
+  margin: 0;
+}
+
+div.movie-detail-item p {
+  margin: 0;
+}
+
 @media screen and (min-width: 768px) {
   /*banner */
   button.more-information {
@@ -220,5 +274,26 @@ footer div.apps > img {
 
   nav.shop-options {
     grid-template-columns: 25% 50% 25%;
+  }
+
+  /* Movie Information */
+  h1.movie-title {
+    text-align: left;
+    padding-left: 9%;
+  }
+
+  section.movie-info {
+    flex-direction: row;
+    align-items: start;
+    gap: 20px;
+  }
+
+  section.movie-info img {
+    width: 30%;
+    height: 100%;
+  }
+
+  div.movie-details {
+    text-align: left;
   }
 }

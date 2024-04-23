@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/global.css" />
+
+    <title>Document</title>
+
+    <script src="../javascript/env.js" type="module"></script>
+    <script src="../javascript/get-movie.js" type="module"></script>
+    <script src="../javascript/constants.js" type="module"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav class="about-us">
+        <div class="social-media">
+          <img src="../resources/icons/facebook.png" />
+          <img src="../resources/icons/twitter.png" />
+          <img src="../resources/icons/instagram.png" />
+        </div>
+
+        <div class="login">
+          <button class="sign-up">Sign Up</button>
+          <button class="log-in">Log in</button>
+        </div>
+      </nav>
+
+      <nav class="shop-options">
+        <img
+          class="logo"
+          src="../resources/images/cinemark_logo.png"
+          alt="Cinemark"
+        />
+
+        <nav class="options">
+          <h3>Billboard</h3>
+          <h3>Theaters</h3>
+          <h3>Snackbar</h3>
+          <h3>Promotions</h3>
+        </nav>
+      </nav>
+    </header>
+
+    <div class="banner">
+      <img
+        class="banner-image"
+        src="../resources/images/banner.jpg"
+        alt="banner"
+      />
+      <button class="more-information">More Information</button>
+    </div>
+
+    <div class="filter">
+      <div class="city-filter">
+        <h3>You are in:</h3>
+
+        <select required aria-placeholder="Value2">
+          <option value="None" hidden>None</option>
+          <option value="value2">Value 2</option>
+          <option value="value3">Value 3</option>
+        </select>
+      </div>
+
+      <div class="local-filter">
+        <h3>Theaters:</h3>
+
+        <select required aria-placeholder="Value2">
+          <option value="None" hidden>None</option>
+          <option value="value2">Value 2</option>
+          <option value="value3">Value 3</option>
+        </select>
+      </div>
+    </div>
+
+    <h1 class="movie-title">One Hundred and One Dalmatians</h1>
+
+    <section class="movie-info">
+      <div class="movie-details"></div>
+    </section>
+
+    <footer>
+      <div class="about-us">
+        <h2>About</h2>
+        <h3>Who are we?</h3>
+        <h3>Terms and Conditions</h3>
+      </div>
+      <div class="contact-us">
+        <h2>Contact us</h2>
+        <h3>FAQs</h3>
+      </div>
+      <div class="maketing-empresarial">
+        <h2>Marketing</h2>
+        <h3>Services</h3>
+      </div>
+      <div class="downloads">
+        <h2>Download our App</h2>
+      </div>
+      <div class="apps">
+        <img src="../resources/icons/facebook-red.png" alt="" />
+        <img src="../resources/icons/twitter-red.png" alt="" />
+        <img src="../resources/icons/instagram-red.png" alt="" />
+      </div>
+    </footer>
+
+    <script type="module">
+      import { get_movie } from '../javascript/get-movie.js';
+
+      const createImag = (movie) => {
+        const imag = movie.primaryImage.url;
+        const alternativeText = movie.primaryImage.caption.plainText;
+        const imgElement = document.createElement('img');
+        imgElement.src = imag;
+        imgElement.alt = alternativeText;
+        return imgElement;
+      };
+
+      const formatDuration = (seconds) => {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+      };
+
+      get_movie('tt0055254').then((data) => {
+        const movie = data.results;
+        const movieInfo = document.querySelector('.movie-info');
+        const movieDetails = document.querySelector('.movie-details');
+
+        const createMovieDetail = (title, content, separator = true) => {
+          const movieDetail = document.createElement('div');
+          movieDetail.className = 'movie-detail-item';
+          movieDetail.innerHTML = `
+          <h4>${title}</h4>
+          <p>${content}</p>
+          ${separator ? '<hr />' : ''}
+          `;
+          return movieDetail;
+        };
+
+        const imgElement = createImag(movie);
+        movieInfo.prepend(imgElement);
+
+        const name = createMovieDetail('Name', movie.titleText.text);
+        const genres = createMovieDetail(
+          'Genres',
+          movie.genres.genres.map((genre) => genre.text).join(', ')
+        );
+        const sinopsis = createMovieDetail(
+          'Sinopsis',
+          movie.plot.plotText.plainText
+        );
+        const duration = createMovieDetail(
+          'Duration',
+          formatDuration(movie.runtime.seconds),
+          false
+        );
+
+        movieDetails.append(name, genres, sinopsis, duration);
+      });
+    </script>
+  </body>
+</html>
